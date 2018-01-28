@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- author: Miles Cooley <miles@milescooley.com> -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<link rel="icon" href="favicon.png" sizes="16x16" type="image/png">
+		<link rel="stylesheet" type="text/css" href="svgEditUI.css" />
+		<title>svgEdit</title>
+<!-- 		<style></style> -->
+
+	</head>
+	<body>
+<!-- 		<svg id="canvas">
+            <rect class="panel" x="10" y="10" width="256" height="64" rx="8" ry="8"></rect>
+        </svg> -->
+		<div class="card">
+<!-- 			<div>Curve</div> -->
+			<label>origin</label><input type="text"></input>
+			<input type="text" value="I'm a hippopotamus and I've got noodles on my back"></input>
+			<input type="text"></input>
+			<input type="text"></input>
+			<input type="text"></input>
+		</div>
+		<script>
+
+function windowEventHandler( event ) {
+	var target = event.target;
+	if ( event.type == "wheel" ) event.preventDefault();
+	console.log( event );
+	if ( target.tagName === "INPUT" && target.getAttribute( "type" ) === "text" ) {
+		textInputEventHandler( event );
+	}
+}
+
+function textInputEventHandler( event ) {
+	var target = event.target;
+	var decimalPlaces;
+	var scrollMultiplier = event.shiftKey ? .01 : 1;
+	var handlers = {
+		"wheel": function textInputWheelHandler( event ) {
+			if ( Math.abs( event.deltaY ) > Math.abs( event.deltaX ) ) {
+				if ( ! isNaN( Number( target.value ) ) ) {
+					decimalPlaces = target.value.split(".")[1];
+					decimalPlaces = decimalPlaces ? decimalPlaces.length : 0;
+					target.value = ( Number( target.value ) + Math.round( event.deltaY / 3 ) * scrollMultiplier ).toFixed( decimalPlaces );
+				}
+			} else {
+				target.scrollLeft += event.deltaX;
+			}
+		},
+		"keypress": function textInputKeypressHandler( event ) {
+			console.log( event );
+		}
+	};
+	handlers[ event.type ]( event );
+}
+
+window.addEventListener( "wheel", windowEventHandler, false );
+// window.addEventListener( "mousemove", windowEventHandler, false );
+window.addEventListener( "keypress", windowEventHandler, false );
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+}
+
+.card {
+	border-radius: 2px;
+	padding: 0 .8em;
+	margin: 3px;
+	background: #6881;
+	box-shadow: 0 0 2px #000c, inset 0 0 3px #0003;
+	line-height: 2.5em;
+}
+
+.card {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: auto;
+	text-align: center;
+}
+
+input[type=text] {
+	padding: .4em .6em;
+	outline: none;
+	border-radius: 2px;
+	border: none;
+	background: #4662;
+	box-shadow: 0 0 3px #0003, inset 0 0 2px #000c;
+}
+
+input[type=text]:focus {
+	background: #ffffff;
+	box-shadow: 0 0 3px #0003, inset 0 0 2px #0cfc;
+	border: solid 1px #0cf;
+	margin: -1px;
+	border-radius: 3px;
+}
+
+#canvas {
+
+}
